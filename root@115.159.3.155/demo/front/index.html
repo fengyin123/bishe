@@ -1,0 +1,51 @@
+﻿<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>CHARTS</title>
+    <script src="/static/echarts.js"></script>
+    <script src="/static/index.js"></script>
+    <link rel="stylesheet" href="/static/index.css" />
+    <script>
+        window.data = {
+            query:{{ query }},
+            seq:{{ seq }},
+            time: {{ time }},
+            dtw: {{ dtw }},
+            start: {{ start }},
+            end:{{ end }},
+            orderNumber:{{ orderNumber }}
+        }
+    </script>
+</head>
+<body style="height: 100%; margin: 0;">
+    <h1 style="text-align:center">时间序列相似性查询系统</h1>
+    <form action="/compute/" method="get" autocomplete="on" style="position:absolute;border:1px ; left: 100px; right: calc(50% + 50px);">
+    Query Time Series: </br > <textarea name="query" rows="3" cols="60">
+    </textarea>
+    <input type="radio" checked="checked" name="Sex" value="dtw" /> DTW距离
+    <input type="radio" checked="checked" name="Sex" value="ed" />  ED距离
+    <input type="radio" checked="checked" name="Sex" value="index" /> 相似组距离   
+    <input type="submit" />
+    <input type="reset" value="重置">
+    </form>
+    <p id="searched" style="position:absolute;border:1px ; left: 100px; left: calc(50% + 50px);">
+        花费时间：{{ time }}<br>
+        距离：{{ dtw }}<br>
+        序列号：{{ orderNumber }}  起点：{{ start }} 终点：{{ end }}
+    </p>
+
+    <div id="data_origin" style="display: none">
+
+    </div>
+    <div id="data_searched" style="display: none">
+    </div>
+    <div id="canvas_origin" style="position: absolute; border: 1px black solid; left: 100px; top: 200px; right: calc(50% + 50px); bottom: 10px">
+
+    </div>
+    <div id="canvas_searched" style="position: absolute; border: 1px black solid; left: calc(50% + 50px); top: 200px; right:100px; bottom: 10px">
+    </div>
+</body>
+</html>
